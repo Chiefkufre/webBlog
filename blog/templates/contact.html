@@ -7,6 +7,33 @@
     {% endblock %}
 
     {% block content %}
+
+    <hr>
+    <h4>SEND A MESSAGE</h4>
+    <p>Your email address will not be published.</p>
+        <br>
+        <form action='/posts' method='POST'>
+            <div class="mb-3">
+                <input type='text' class="form-control" name='name' id='name' placeholder="Name" required>
+            </div>
+            <br>
+            <div class="mb-3">
+                <input type='email' class="form-control" name='email' id='email' placeholder="Email" required>
+            <br>
+            <div class="mb-3">
+                <input type='text' class="form-control" name='subject' id='subject' placeholder="Subject" required>
+            </div>
+            <br>
+            </div>
+            <div class="mb-3">
+                <textarea name="message" id="content" cols="43" rows="10" placeholder="Message" required></textarea>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-success">Send</button>
+        </div>
+        </form>
+        <hr>
     
     {% endblock %}
 
