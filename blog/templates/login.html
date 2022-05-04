@@ -10,22 +10,21 @@
 
     <div class="container">
         <hr>
-        <h3>Login with to write:</h3>
-        <br>
+        <h3>Login with to write</h3>
+     
         <form action="/login" method="POST">
+            <br>
             <div class="mb-3">
-              <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" name="email" id="email" placeholder="email or username" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" name="password" id="password" placeholder="password">
             </div>
             <div class="mb-3 form-check">
               <label class="form-check-label" for="exampleCheck1">Not yet a member? <a href="/sign-up">Create Account</a></label>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button class="btn btn-success d-grid gap-2 col-6 mx-auto" type="submit">Login</button>
+            <br>
           </form>
 
         <hr>

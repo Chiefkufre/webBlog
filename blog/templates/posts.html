@@ -7,6 +7,29 @@
     {% endblock %}
 
     {% block content %}
+
+    <hr>
+    <h4>Create New Blog Post:</h4>
+        <br>
+        <form action='/posts' method='POST'>
+            <div class="mb-3">
+                <input type='text' class="form-control" name='title' id='title' placeholder="title">
+            </div>
+            <br>
+            <div class="mb-3">
+                <input type='text' class="form-control" name='author' id='author' placeholder="author name">
+            <br>
+            </div>
+            <div class="mb-3">
+                <textarea name="contnt" id="content" cols="50" rows="10"></textarea>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-success">Post</button>
+        </div>
+        </form>
+        <hr>
+
     
     {% endblock %}
 
