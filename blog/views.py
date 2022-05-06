@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, flash, url_for, request
 from . import db
 from .models import BlogContent, User, Contact
+from flask_login import login_required, login_user, logout_user, current_user
 
 
 views = Blueprint('views', __name__)
@@ -9,7 +10,7 @@ views = Blueprint('views', __name__)
 @views.route('/')
 def home():
     
-    return render_template("home.html")
+    return render_template("home.html", user = current_user)
     
 
 @views.route('/contact', methods=['GET','POST'])
@@ -27,7 +28,7 @@ def contact():
         redirect(url_for('views.contact'))
         
     
-    return render_template('contact.html')
+    return render_template('contact.html', user = current_user)
     
 
 @views.route('/about')
