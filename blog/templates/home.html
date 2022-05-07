@@ -11,7 +11,8 @@
     <br>
     {% for article in articles %}
         <h1>{{ article.title }}</h1>
-        <small>{{ article.author }}</small>
+        <small>By: {{ article.author }}</small>
+        <small>{{ article.date }}</small>
         <p>{{ article.content }}</p>
         {% endfor %}
         <hr>

@@ -10,17 +10,17 @@
     <hr>
     <h4>edit Post:</h4>
         <br>
-        <form action='/posts' method='POST'>
+        <form  method='POST'>
             <div class="mb-3">
-                <input type='text' class="form-control" name='title' id='title' placeholder="title">
+                <input type='text' class="form-control" name='title' id='title' placeholder="title" value="{{ post.title }}">
             </div>
             <br>
             <div class="mb-3">
-                <input type='text' class="form-control" name='author' id='author' placeholder="author name">
+                <input type='text' class="form-control" name='author' id='author' placeholder="author name" value="{{ post.author }}" >
             <br>
             </div>
             <div class="mb-3">
-                <textarea name="content" id="content" cols="50" rows="10"></textarea>
+                <textarea name="content" id="content" cols="50" rows="10">{{ post.content }}</textarea>
             </div>
             <br>
             <div>
