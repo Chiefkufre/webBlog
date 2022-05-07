@@ -36,3 +36,13 @@ def contact():
 def about():
     
     return render_template('about.html')
+
+
+@views.route('/search', methods=['GET','POST'])
+def search():
+    article = BlogContent.query.order_by(BlogContent.date).all()
+    # if request.method == 'POST':
+    #     searched = request.form.get('searched')
+    #     submit =  request.form.get('submit')
+    
+    return render_template('search.html', user = current_user, articles=article)

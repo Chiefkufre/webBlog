@@ -7,6 +7,7 @@
     {% endblock %}
 
     {% block content %}
+    <div class="container">
 
     <hr>
     <h4>Create New Blog Post:</h4>
@@ -21,7 +22,7 @@
             <br>
             </div>
             <div class="mb-3">
-                <textarea name="content" id="content" cols="50" rows="10"></textarea>
+                <textarea name="content" id="content" cols="45" rows="10"></textarea>
             </div>
             <br>
             <div>
@@ -31,12 +32,14 @@
         <br>
         {% for article in articles %}
             <h1>{{ article.title }}</h1>
-            <small>{{ article.author }}</small>
-            <p>{{ article.content }}</p>
+            <small> <strong>By: </strong>{{ article.author }}</small>
+            <p style="white-space:pre-wrap">{{ article.content }}</p>
         <button class="btn btn-danger" > <a href="/write/delete/{{ article.id }}">Delete</a> </button>
-        <button class="btncolor btn btn-danger" > <a href="/write/edit/{{ article.id }}">Edit</a> </button>
+        <button class="btncolor btn btn-primary" > <a href="/write/edit/{{ article.id }}">Edit</a> </button>
             {% endfor %}
+            <br>
             <hr>
+    </div>
     
     {% endblock %}
 

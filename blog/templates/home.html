@@ -7,15 +7,17 @@
     {% endblock %}
 
     {% block content %}
+    <div class="container">
     <hr>
     <br>
     {% for article in articles %}
         <h1>{{ article.title }}</h1>
         <small>By: {{ article.author }}</small>
         <small>{{ article.date }}</small>
-        <p>{{ article.content }}</p>
+        <p style="white-space:pre-wrap">{{ article.content }}</p>
         {% endfor %}
         <hr>
+    </div>
     {% endblock %}
 
     {% block footer %}
