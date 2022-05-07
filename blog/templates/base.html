@@ -19,13 +19,21 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="/">Home</a>
-                  <a class="nav-link" href="/write">Write</a>
-                  <a class="nav-link" href="/login">Login</a>
-                  <a class="nav-link" href="/sign-up">Sign up</a>
-                  <a class="nav-link" href="/about">About us</a>
-                  <a class="nav-link" href="contact">Contact</a>
-                  <a class="nav-link" href="/logout">Logout</a>
+                  {%  if user.is_authenticated  %}
+                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                      <a class="nav-link" href="/write">Write</a>
+                      <a class="nav-link" href="/about">About us</a>
+                      <a class="nav-link" href="contact">Contact</a>
+                      <a class="nav-link" href="/logout">Logout</a>
+                  {% else %}
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/write">Write</a>
+                    <a class="nav-link" href="/sign-up">Sign up</a>
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/about">About us</a>
+                    <a class="nav-link" href="contact">Contact</a>
+                  {% endif %}
+
                 </div>
               </div>
             </div>
