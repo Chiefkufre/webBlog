@@ -63,9 +63,25 @@ def sign_up():
     
 
 @auth.route('/write')
+@login_required
 def post():
-    
-    return render_template('posts.html')
+    if request.method == 'POST':
+        title = request.form['title']
+        author = request.form['author']
+        content = request.form['content']
+        
+        if len(content) < 1:
+            flash('You can\'t make an empty post', category='error')
+            # return redirect(url_for('auth.write'))
+        elif len(title) < 1:
+            flash('You forgot to write a title', category='error')
+        
+        else:
+            new_content = BlogContent(title=title, author=author, content=content)
+            db.session.add(new_content)
+            db.session.commit()
+            flash('Post submit. Go to home to see your new post', category='success')
+            return render_template('posts.html', user=current_user)
     
     
 
@@ -78,4 +94,4 @@ def edit(id):
 @auth.route('/write/delete/<int:id>')
 def delete(id):
     
-    return redirect(url_for('auth.post'))
+    return redirect(url_for('auth.write'))
