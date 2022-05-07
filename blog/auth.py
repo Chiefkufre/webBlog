@@ -57,41 +57,56 @@ def sign_up():
             db.session.commit()
             login_user(user, remember=True)
             flash('account created successfully. Please login in', category='success')
-            return redirect(url_for(auth.login))
+            return redirect(url_for("auth.login"))
             
     return render_template('sign_up.html', user= current_user)
     
 
-@auth.route('/write')
+@auth.route('/write', methods=['GET','POST'])
 @login_required
-def post():
+def write():
     if request.method == 'POST':
-        title = request.form['title']
-        author = request.form['author']
-        content = request.form['content']
+        title = request.form.get('title')
+        author = request.form.get('author')
+        content = request.form.get('content')
         
-        if len(content) < 1:
-            flash('You can\'t make an empty post', category='error')
-            # return redirect(url_for('auth.write'))
-        elif len(title) < 1:
+        if len(title) < 1:
             flash('You forgot to write a title', category='error')
+        elif len(content) < 1:
+            flash('You can\'t make an empty post', category='error')
+            return redirect(url_for('auth.write'))
         
         else:
             new_content = BlogContent(title=title, author=author, content=content)
             db.session.add(new_content)
             db.session.commit()
             flash('Post submit. Go to home to see your new post', category='success')
-            return render_template('posts.html', user=current_user)
+            return redirect(url_for('auth.write'))
+    
+    return render_template('posts.html', user=current_user)
     
     
 
-@auth.route('write/edit/<int:id>')
+@auth.route('write/edit/<int:id>', methods=['GET','POST'])
 def edit(id):
+    post = BlogContent.query.get_or_404(id)
+    if request.method == 'POST':
+        post.title = request.form.get('title')
+        post.author = request.form.get('author')
+        post.content = request.form.get('content')
+        db.session.commit()
+        flash('Article updated', category='success')
+        return redirect('/write')
     
-    return render_template('edit.html')
+    return render_template('edit.html', post=post)
     
 
 @auth.route('/write/delete/<int:id>')
 def delete(id):
+    post = BlogContent.query.get_or_404(id)
+    if request.method == 'POST':
+        db.session.delete(post)
+        db.session.commit()
+        flash('Article deleted', category='success')
+        return redirect('/write')
     
-    return redirect(url_for('auth.write'))

@@ -10,7 +10,8 @@ views = Blueprint('views', __name__)
 @views.route('/')
 def home():
     
-    return render_template("home.html", user = current_user)
+    article = BlogContent.query.order_by(BlogContent.date).all()
+    return render_template("home.html", user = current_user, articles = article)
     
 
 @views.route('/contact', methods=['GET','POST'])
