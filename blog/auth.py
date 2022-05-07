@@ -82,12 +82,14 @@ def write():
             db.session.commit()
             flash('Post submit. Go to home to see your new post', category='success')
             return redirect(url_for('auth.write'))
-    
-    return render_template('posts.html', user=current_user)
+        
+    article = BlogContent.query.order_by(BlogContent.date).all()
+    return render_template('posts.html', user=current_user, articles = article)
     
     
 
 @auth.route('write/edit/<int:id>', methods=['GET','POST'])
+@login_required
 def edit(id):
     post = BlogContent.query.get_or_404(id)
     if request.method == 'POST':
@@ -104,9 +106,8 @@ def edit(id):
 @auth.route('/write/delete/<int:id>')
 def delete(id):
     post = BlogContent.query.get_or_404(id)
-    if request.method == 'POST':
-        db.session.delete(post)
-        db.session.commit()
-        flash('Article deleted', category='success')
-        return redirect('/write')
+    db.session.delete(post)
+    db.session.commit()
+    flash('Article deleted', category='success')
+    return redirect('/write')
     

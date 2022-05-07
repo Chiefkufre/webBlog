@@ -28,8 +28,15 @@
                 <button type="submit" class="btn btn-success">Post</button>
         </div>
         </form>
-        <hr>
-
+        <br>
+        {% for article in articles %}
+            <h1>{{ article.title }}</h1>
+            <small>{{ article.author }}</small>
+            <p>{{ article.content }}</p>
+        <button class="btn btn-danger" > <a href="/write/delete/{{ article.id }}">Delete</a> </button>
+        <button class="btncolor btn btn-danger" > <a href="/write/edit/{{ article.id }}">Edit</a> </button>
+            {% endfor %}
+            <hr>
     
     {% endblock %}
 
