@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block title %}<title>write</title>{% endblock %}
     
@@ -7,7 +8,7 @@
     {% endblock %}
 
     {% block content %}
-    {{ ckeditor.load() }}
+    
     <div class="container">
 
     <hr>
@@ -23,6 +24,8 @@
             <br>
             </div>
             <div class="mb-3">
+                <!-- ckeditor loading and configuration -->
+                {{ ckeditor.load() }}
                 {{ ckeditor.create() }}
             </div>
             <br>

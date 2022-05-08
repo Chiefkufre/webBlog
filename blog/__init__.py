@@ -17,8 +17,10 @@ def create_app():
     db.init_app(app)
     ckeditor.init_app(app)
     
+    # register routes
     from .views import views
     from .auth import auth
+    
     
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
@@ -26,6 +28,7 @@ def create_app():
     from flask_login import LoginManager
     from .models import User, BlogContent, Contact
     
+    # calling database
     create_database(app)
     
     
@@ -41,6 +44,7 @@ def create_app():
 
     return app
 
+# function to create database when called
 def create_database(app):
     if not path.exists('blog' + DB_NAME):
         db.create_all(app=app)

@@ -1,3 +1,4 @@
+/* basic css styling for blog forms */
 form {
     background: #fff;
     color: #525865;
@@ -28,6 +29,7 @@ form {
     font-family: Helvetica, sans-serif,  Arial;
   }
 
+  /* button link syle */
 button a{
   color: #fff;
   text-decoration: none;

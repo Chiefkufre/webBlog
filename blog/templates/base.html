@@ -11,6 +11,7 @@
     
   {% block nav %}
   <header>
+    <!-- NAVBAR from bootstrap framework -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="/">webBlog</a>
@@ -19,13 +20,16 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                  <!-- restrict user access to some users. depending on if user is login or not -->
                   {%  if user.is_authenticated  %}
+                  <!-- Views availabe to login user -->
                       <a class="nav-link active" aria-current="page" href="/">Home</a>
                       <a class="nav-link" href="/write">Write</a>
                       <a class="nav-link" href="/about">About us</a>
                       <a class="nav-link" href="contact">Contact</a>
                       <a class="nav-link" href="/logout">Logout</a>
                   {% else %}
+                  <!-- Views availabe to logout user -->
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="/write">Write</a>
                     <a class="nav-link" href="/sign-up">Sign up</a>
@@ -34,13 +38,10 @@
                     <a class="nav-link" href="contact">Contact</a>
                   {% endif %}
                 </div>
-                <form method="POST"  class="d-flex">
-                  <input class="form-control mr-sm-2" type="search" name="searched" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
               </div>
             </div>
           </nav>
+          <!-- this code diplays message depend on which action a user has taken -->
           {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for category, message in messages %}
@@ -66,7 +67,7 @@
           {% endblock %}
         
 
-    
+    <!-- body content goes here -->
     
 
     {% block content %}
@@ -75,11 +76,20 @@
     </div>
     {% endblock %}
 
+    
     {% block footer %}
     <footer>
-
-    </footer>
-    {% endblock %}
+      <div class="container">
+          <form action="">
+              <label for="SUBSCRIBE">subscribe to newsletter</label>
+              <input type="submit" value="subscribe">
+          </form>
+    <h6>Built by: Samuel kufre willie</h6>
+    <h6>Github here: <a href="https://github.com/chiefkufre">Github</a>  </h6>
+   
+  </div>
+</footer>
+  {% endblock %}
 
 
 

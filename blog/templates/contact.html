@@ -26,7 +26,9 @@
             <br>
             </div>
             <div class="mb-3">
-                <textarea name="message" id="message" cols="43" rows="10" placeholder="Message" required></textarea>
+                <!-- ckeditor installation and configuration -->
+                {{ ckeditor.load()}}
+                {{ckeditor.create()}}
             </div>
             <br>
             <div>

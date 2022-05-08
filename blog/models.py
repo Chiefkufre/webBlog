@@ -2,7 +2,7 @@ from . import db
 from flask_login import UserMixin
 from datetime import datetime
 
-
+# database model for blog_post/content
 class BlogContent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
@@ -12,6 +12,7 @@ class BlogContent(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+# database model for Sign_up users
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=False)
@@ -37,6 +38,7 @@ class User(db.Model, UserMixin):
     
     
 
+# database for contact/messages
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=False)

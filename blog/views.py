@@ -6,7 +6,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 
 views = Blueprint('views', __name__)
 
-
+# route for home page
 @views.route('/')
 def home():
     
@@ -14,13 +14,14 @@ def home():
     return render_template("home.html", user = current_user, articles = article)
     
 
+# route for contact page
 @views.route('/contact', methods=['GET','POST'])
 def contact():
     if request.method == 'POST':
         full_name = request.form.get('name')
         email = request.form.get('email')
         subject = request.form.get('subject')
-        message = request.form.get('message')
+        message = request.form.get('ckeditor')
         
         new_message = Contact(full_name=full_name, email=email,subject=subject, message=message)
         db.session.add(new_message)
@@ -35,14 +36,5 @@ def contact():
 @views.route('/about')
 def about():
     
-    return render_template('about.html')
+    return render_template('about.html', user=current_user)
 
-
-@views.route('/search', methods=['GET','POST'])
-def search():
-    article = BlogContent.query.order_by(BlogContent.date).all()
-    # if request.method == 'POST':
-    #     searched = request.form.get('searched')
-    #     submit =  request.form.get('submit')
-    
-    return render_template('search.html', user = current_user, articles=article)
