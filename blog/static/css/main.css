@@ -38,3 +38,14 @@ button a{
 body h1{
   color: green;
 }
+
+footer{
+  background-color: #4b515d;
+  color: #B8B6B6;
+  text-align: center;
+}
+
+footer a{
+  text-decoration: none;
+
+}
