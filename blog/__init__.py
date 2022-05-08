@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_ckeditor import CKEditor
 
-db = SQLAlchemy()
-DB_NAME =  'database.db'
+
+# DB_NAME =  'database.db'
 
 ckeditor = CKEditor()
 
@@ -12,9 +12,11 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = 'hdjds njdj'
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://quhndgozyzmwjb:615fdb6698b586d74a24c659dd67396f7b06c4d47e41faa28e5a77400231242e@ec2-52-4-104-184.compute-1.amazonaws.com:5432/d86porjmrvj6ar'
+    db = SQLAlchemy(app)
     app.config['CKEDITOR_PKG_TYPE'] = 'standard'
-    db.init_app(app)
+    # db.init_app(app)
     ckeditor.init_app(app)
     
     # register routes
@@ -29,7 +31,7 @@ def create_app():
     from .models import User, BlogContent, Contact
     
     # calling database
-    create_database(app)
+    # create_database(app)
     
     
     login_manager = LoginManager()
@@ -44,9 +46,9 @@ def create_app():
 
     return app
 
-# function to create database when called
-def create_database(app):
-    if not path.exists('blog' + DB_NAME):
-        db.create_all(app=app)
-        print('database created!')
+# function to create database in testing environmrnt when called
+# def create_database(app):
+#     if not path.exists('blog' + DB_NAME):
+#         db.create_all(app=app)
+#         print('database created!')
     

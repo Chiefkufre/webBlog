@@ -8,11 +8,13 @@ Flask-Login==0.6.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==1.0.1
 greenlet==1.1.2
+gunicorn==20.1.0
 idna==3.3
 importlib-metadata==4.11.3
 itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
 Jinja2 @ file:///opt/conda/conda-bld/jinja2_1647436528585/work
 MarkupSafe @ file:///C:/ci/markupsafe_1621528502553/work
+psycopg2==2.9.3
 requests==2.27.1
 SQLAlchemy==1.4.36
 urllib3==1.26.9
