@@ -1,16 +1,21 @@
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from flask_ckeditor import CKEditor
 
 db = SQLAlchemy()
 DB_NAME =  'database.db'
+
+ckeditor = CKEditor()
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'hdjds njdj'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['CKEDITOR_PKG_TYPE'] = 'standard'
     db.init_app(app)
+    ckeditor.init_app(app)
     
     from .views import views
     from .auth import auth

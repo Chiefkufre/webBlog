@@ -34,8 +34,7 @@
                     <a class="nav-link" href="contact">Contact</a>
                   {% endif %}
                 </div>
-                <form method="POST" action="{{ url_for('search') }}" class="d-flex">
-                    {{ form.hidden_tag() }}
+                <form method="POST"  class="d-flex">
                   <input class="form-control mr-sm-2" type="search" name="searched" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>

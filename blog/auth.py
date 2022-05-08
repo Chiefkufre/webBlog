@@ -68,7 +68,8 @@ def write():
     if request.method == 'POST':
         title = request.form.get('title')
         author = request.form.get('author')
-        content = request.form.get('content')
+        content = request.form.get('ckeditor')
+        # content = request.form.get('content')
         
         if len(title) < 1:
             flash('You forgot to write a title', category='error')
@@ -95,12 +96,12 @@ def edit(id):
     if request.method == 'POST':
         post.title = request.form.get('title')
         post.author = request.form.get('author')
-        post.content = request.form.get('content')
+        post.content = request.form.get('ckeditor')
         db.session.commit()
         flash('Article updated', category='success')
         return redirect('/write')
     
-    return render_template('edit.html', post=post)
+    return render_template('edit.html', user=current_user, post=post)
     
 
 @auth.route('/write/delete/<int:id>')

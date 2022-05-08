@@ -7,6 +7,7 @@
     {% endblock %}
 
     {% block content %}
+    {{ ckeditor.load() }}
     <div class="container">
 
     <hr>
@@ -22,7 +23,7 @@
             <br>
             </div>
             <div class="mb-3">
-                <textarea name="content" id="content" cols="45" rows="10"></textarea>
+                {{ ckeditor.create() }}
             </div>
             <br>
             <div>
@@ -33,7 +34,7 @@
         {% for article in articles %}
             <h1>{{ article.title }}</h1>
             <small> <strong>By: </strong>{{ article.author }}</small>
-            <p style="white-space:pre-wrap">{{ article.content }}</p>
+            <p style="white-space:pre-wrap">{{ article.content|safe }}</p>
         <button class="btn btn-danger" > <a href="/write/delete/{{ article.id }}">Delete</a> </button>
         <button class="btncolor btn btn-primary" > <a href="/write/edit/{{ article.id }}">Edit</a> </button>
             {% endfor %}
